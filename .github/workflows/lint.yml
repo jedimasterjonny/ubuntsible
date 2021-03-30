@@ -1,0 +1,17 @@
+---
+name: Lint
+
+on: [push]
+
+jobs:
+  shellcheck:
+    name: Shellcheck
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2.3.4
+        with:
+          fetch-depth: 1
+      - name: Run ShellCheck
+        uses: ludeeus/action-shellcheck@1.0.0
+        with:
+          scandir: './one-shots'
