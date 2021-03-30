@@ -3,3 +3,4 @@
   hosts: ubuntsible-test-server.home
   roles:
     - {role: common}
+    - {role: zfs}
