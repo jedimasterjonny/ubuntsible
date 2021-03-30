@@ -1,0 +1,23 @@
+{
+  "extends": [
+    "config:base"
+  ],
+
+  "timezone": "Europe/London",
+  "separateMinorPatch": true,
+
+  "packageRules": [
+    {
+      "matchUpdateTypes": ["major"],
+      "assignees": ["jedimasterjonny"]
+    },
+    {
+      "matchUpdateTypes": ["minor"],
+      "assignees": ["jedimasterjonny"]
+    },
+    {
+      "matchUpdateTypes": ["patch"],
+      "automerge": true
+    }
+  ]
+}
