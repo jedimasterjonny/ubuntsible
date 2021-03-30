@@ -2,3 +2,18 @@
 - name: Set hostname
   ansible.builtin.hostname:
     name: "{{ inventory_hostname }}"
+
+- name: Create ansible user
+  ansible.builtin.user:
+    name: ansible
+
+- name: Allow Ansible user to sudo
+  ansible.builtin.lineinfile:
+    path: /etc/sudoers.d/ansible-allow-to-sudo
+    state: present
+    line: "ansible ALL=(ALL) NOPASSWD: ALL"
+    validate: /usr/sbin/visudo -cf %s
+    owner: root
+    group: root
+    mode: '0644'
+    create: true
