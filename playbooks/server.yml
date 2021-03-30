@@ -1,0 +1,5 @@
+---
+- name: Basic setup for ciri
+  hosts: ubuntsible-test-server.home
+  roles:
+    - {role: common}
