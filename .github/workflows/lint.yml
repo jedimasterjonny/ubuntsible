@@ -27,3 +27,14 @@ jobs:
         uses: ibiqlik/action-yamllint@v3.0.0
         with:
           strict: true
+  ansible:
+    name: Ansible Lint
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2.3.4
+        with:
+          fetch-depth: 1
+      - name: Lint Ansible
+        uses: ansible/ansible-lint-action@master
+        with:
+          targets: "playbooks/*.yml"
