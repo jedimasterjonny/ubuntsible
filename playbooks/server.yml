@@ -16,3 +16,4 @@
     - {role: tautulli, tags: ['arr']}
     - {role: portainer, tags: ['arr']}
     - {role: transmission, tags: ['arr']}
+    - {role: samba}
