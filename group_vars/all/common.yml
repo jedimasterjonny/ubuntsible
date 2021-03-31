@@ -18,3 +18,6 @@ arr_users:
 container_config_folder: /var/lib/containers
 media_path: /cintra/media
 downloads_path: /cintra/downloads
+
+vpn_user: "{{ vault_vpn_user }}"
+vpn_password: "{{ vault_vpn_password }}"
