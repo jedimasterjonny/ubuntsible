@@ -1,0 +1,60 @@
+---
+- name: Create transmission group
+  ansible.builtin.group:
+    name: transmission
+    gid: "{{ arr_users['transmission'].gid }}"
+
+- name: Create transmission user
+  ansible.builtin.user:
+    name: transmission
+    uid: "{{ arr_users['transmission'].uid }}"
+    groups: transmission,{{ arr_group.name }}
+
+- name: Start Transmission container
+  community.docker.docker_container:
+    name: transmission
+    image: haugene/transmission-openvpn:3.6
+    state: started
+    restart_policy: unless-stopped
+    capabilities: NET_ADMIN
+    networks:
+      - name: "{{ traefik_network_name }}"
+    volumes:
+      - "{{ downloads_path }}:/storage/downloads"
+    labels:
+      traefik.http.routers.transmission.rule: Host(`transmission.{{ inventory_hostname }}`)
+      traefik.http.services.tranmission.loadbalancer.server.port: '9091'
+    env:
+      PUID: "{{ arr_users['transmission'].uid }}"
+      PGID: "{{ arr_users['transmission'].gid }}"
+      TZ: "Europe/London"
+      UMASK: "022"
+      LOCAL_NETWORK: "192.168.122.0/24"
+      OPENVPN_OPTS: "--inactive 3600 --ping 10 --ping-exit 60 --mute-replay-warnings"
+      OPENVPN_PROVIDER: "NORDVPN"
+      OPENVPN_USERNAME: "{{ vpn_username }}"
+      OPENVPN_PASSWORD: "{{ vpn_password }}"
+      TRANSMISSION_DOWNLOAD_QUEUE_SIZE: "10"
+      TRANSMISSION_PEER_LIMIT_GLOBAL: "420"
+      TRANSMISSION_PEER_LIMIT_PER_TORRENT: "140"
+      TRANSMISSION_UPLOAD_SLOTS_PER_TORRENT: "60"
+      TRANSMISSION_RATIO_LIMIT_ENABLED: "true"
+      TRANSMISSION_RATIO_LIMIT: "2"
+      TRANSMISSION_SPEED_LIMIT_DOWN_ENABLED: "true"
+      TRANSMISSION_SPEED_LIMIT_DOWN: "14100"
+      TRANSMISSION_SPEED_LIMIT_UP_ENABLED: "true"
+      TRANSMISSION_SPEED_LIMIT_UP: "2650"
+      TRANSMISSION_PREALLOCATION: "1"
+      TRANSMISSION_HOME: "/storage/downloads/transmission-home"
+      TRANSMISSION_DOWNLOAD_DIR: "/storage/downloads/completed"
+      TRANSMISSION_INCOMPLETE_DIR: "/storage/downloads/incomplete"
+      TRANSMISSION_WATCH_DIR: "/storage/downloads/watch"
+    container_default_behavior: no_defaults
+    network_mode: "{{ traefik_network_name }}"
+    auto_remove: false
+    init: false
+    interactive: false
+    memory: "0"
+    paused: false
+    privileged: false
+    tty: false

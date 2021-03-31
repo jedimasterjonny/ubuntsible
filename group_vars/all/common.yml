@@ -14,10 +14,11 @@ arr_users:
   sonarr: {uid: 715, gid: 715}
   tautulli: {uid: 716, gid: 716}
   portainer: {uid: 717, gid: 717}
+  transmission: {uid: 718, gid: 718}
 
 container_config_folder: /var/lib/containers
 media_path: /cintra/media
 downloads_path: /cintra/downloads
 
-vpn_user: "{{ vault_vpn_user }}"
+vpn_username: "{{ vault_vpn_username }}"
 vpn_password: "{{ vault_vpn_password }}"
