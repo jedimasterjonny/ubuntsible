@@ -8,7 +8,7 @@
   ansible.builtin.user:
     name: jackett
     uid: "{{ arr_users['jackett'].uid }}"
-    groups: jackett,{{ arr_group.name }}
+    groups: jackett
 
 - name: Start Jackett container
   community.docker.docker_container:
