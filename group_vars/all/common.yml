@@ -9,6 +9,7 @@ arr_users:
   jackett: {uid: 710, gid: 710}
   heimdall: {uid: 711, gid: 711}
   lidarr: {uid: 712, gid: 712}
+  plex: {uid: 713, gid: 713}
 
 container_config_folder: /var/lib/containers
 media_path: /cintra/media
