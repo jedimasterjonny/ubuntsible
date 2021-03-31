@@ -1,0 +1,35 @@
+---
+- name: Create portainer group
+  ansible.builtin.group:
+    name: portainer
+    gid: "{{ arr_users['portainer'].gid }}"
+
+- name: Create portainer user
+  ansible.builtin.user:
+    name: portainer
+    uid: "{{ arr_users['portainer'].uid }}"
+    groups: portainer
+
+- name: Start Portainer container
+  community.docker.docker_container:
+    name: portainer
+    image: portainer/portainer-ce:2.1.1
+    state: started
+    restart_policy: unless-stopped
+    networks:
+      - name: "{{ traefik_network_name }}"
+    volumes:
+      - "{{ container_config_folder }}/portainer:/data"
+      - /var/run/docker.sock:/var/run/docker.sock
+    labels:
+      traefik.http.routers.portainer.rule: Host(`portainer.{{ inventory_hostname }}`)
+      traefik.http.services.portainer.loadbalancer.server.port: '9000'
+    container_default_behavior: no_defaults
+    network_mode: "{{ traefik_network_name }}"
+    auto_remove: false
+    init: false
+    interactive: false
+    memory: "0"
+    paused: false
+    privileged: false
+    tty: false
