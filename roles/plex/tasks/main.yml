@@ -35,7 +35,7 @@
       TZ: "Europe/London"
       ADVERTISE_IP: "http://{{ ansible_default_ipv4.address }}:32400/"
       VERSION: docker
-      UNMASK: "022"
+      UMASK: "022"
       PLEX_CLAIM: claim-Nk-ufXUhAFPxPhZxQyE_
     container_default_behavior: no_defaults
     network_mode: plex

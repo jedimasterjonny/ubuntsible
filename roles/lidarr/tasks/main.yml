@@ -28,7 +28,7 @@
       PUID: "{{ arr_users['lidarr'].uid }}"
       PGID: "{{ arr_users['lidarr'].gid }}"
       TZ: "Europe/London"
-      UNMASK: "022"
+      UMASK: "022"
     container_default_behavior: no_defaults
     network_mode: "{{ traefik_network_name }}"
     auto_remove: false
