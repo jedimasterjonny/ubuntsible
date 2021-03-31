@@ -4,3 +4,4 @@
   roles:
     - {role: common}
     - {role: zfs}
+    - {role: docker}
