@@ -18,3 +18,9 @@
     name: jonny
     groups: docker
     append: true
+
+- name: Create container configuration directory
+  ansible.builtin.file:
+    path: "{{ container_config_folder }}"
+    state: directory
+    mode: '0755'

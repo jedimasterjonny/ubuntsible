@@ -4,3 +4,8 @@ traefik_network_name: traefik
 arr_group:
   name: arr
   gid: "709"
+
+arr_users:
+  jackett: {uid: 710, gid: 710}
+
+container_config_folder: /var/lib/containers

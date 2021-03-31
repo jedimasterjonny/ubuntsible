@@ -18,6 +18,10 @@
     {
       "matchUpdateTypes": ["patch"],
       "automerge": true
+    },
+    {
+      "matchPackageNames": ["ghcr.io/linuxserver/jackett"],
+      "versionScheme": "regex:version-v(?<major>\\d+).(?<minor>\\d+).(?<patch>\\d+)?$"
     }
   ]
 }

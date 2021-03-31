@@ -1,0 +1,38 @@
+---
+- name: Create jackett group
+  ansible.builtin.group:
+    name: jackett
+    gid: "{{ arr_users['jackett'].gid }}"
+
+- name: Create jackett user
+  ansible.builtin.user:
+    name: jackett
+    uid: "{{ arr_users['jackett'].uid }}"
+    groups: jackett,{{ arr_group.name }}
+
+- name: Start Jackett container
+  community.docker.docker_container:
+    name: jackett
+    image: ghcr.io/linuxserver/jackett:version-v0.17.815
+    state: started
+    restart_policy: unless-stopped
+    networks:
+      - name: "{{ traefik_network_name }}"
+    volumes:
+      - "{{ container_config_folder }}/jackett:/config"
+    labels:
+      traefik.http.routers.jackett.rule: Host(`jackett.{{ inventory_hostname }}`)
+    env:
+      PUID: "{{ arr_users['jackett'].uid }}"
+      PGID: "{{ arr_users['jackett'].gid }}"
+      TZ: "Europe/London"
+      AUTO_UPDATE: "false"
+    container_default_behavior: no_defaults
+    network_mode: "{{ traefik_network_name }}"
+    auto_remove: false
+    init: false
+    interactive: false
+    memory: "0"
+    paused: false
+    privileged: false
+    tty: false

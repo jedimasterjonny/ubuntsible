@@ -27,6 +27,7 @@ jobs:
         uses: ibiqlik/action-yamllint@v3.0.0
         with:
           strict: true
+          config_file: .yamllint.yml
   ansible:
     name: Ansible Lint
     runs-on: ubuntu-20.04
