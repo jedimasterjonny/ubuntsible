@@ -1,2 +1,6 @@
 ---
 traefik_network_name: traefik
+
+arr_group:
+  name: arr
+  gid: "709"

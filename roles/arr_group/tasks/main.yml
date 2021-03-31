@@ -1,0 +1,11 @@
+---
+- name: Create arr group
+  ansible.builtin.group:
+    name: "{{ arr_group.name }}"
+    gid: "{{ arr_group.gid }}"
+
+- name: Add jonny to arr group
+  ansible.builtin.user:
+    name: jonny
+    groups: "{{ arr_group.name }}"
+    append: true
