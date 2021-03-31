@@ -6,3 +6,4 @@
     - {role: zfs}
     - {role: docker}
     - {role: traefik}
+    - {role: arr_group}
