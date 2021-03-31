@@ -11,6 +11,7 @@ arr_users:
   lidarr: {uid: 712, gid: 712}
   plex: {uid: 713, gid: 713}
   radarr: {uid: 714, gid: 714}
+  sonarr: {uid: 715, gid: 715}
 
 container_config_folder: /var/lib/containers
 media_path: /cintra/media

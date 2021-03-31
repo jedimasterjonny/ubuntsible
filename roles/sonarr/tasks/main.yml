@@ -1,0 +1,40 @@
+---
+- name: Create sonarr group
+  ansible.builtin.group:
+    name: sonarr
+    gid: "{{ arr_users['sonarr'].gid }}"
+
+- name: Create sonarr user
+  ansible.builtin.user:
+    name: sonarr
+    uid: "{{ arr_users['sonarr'].uid }}"
+    groups: sonarr,{{ arr_group.name }}
+
+- name: Start Sonarr container
+  community.docker.docker_container:
+    name: sonarr
+    image: ghcr.io/linuxserver/sonarr:version-3.0.6.1196
+    state: started
+    restart_policy: unless-stopped
+    networks:
+      - name: "{{ traefik_network_name }}"
+    volumes:
+      - "{{ container_config_folder }}/sonarr:/config"
+      - "{{ media_path }}/movies:/storage/media/tv"
+      - "{{ downloads_path }}:/storage/downloads"
+    labels:
+      traefik.http.routers.sonarr.rule: Host(`sonarr.{{ inventory_hostname }}`)
+    env:
+      PUID: "{{ arr_users['sonarr'].uid }}"
+      PGID: "{{ arr_users['sonarr'].gid }}"
+      TZ: "Europe/London"
+      UMASK: "022"
+    container_default_behavior: no_defaults
+    network_mode: "{{ traefik_network_name }}"
+    auto_remove: false
+    init: false
+    interactive: false
+    memory: "0"
+    paused: false
+    privileged: false
+    tty: false

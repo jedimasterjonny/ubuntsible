@@ -1,0 +1,5 @@
+---
+dependencies:
+  - role: traefik
+  - role: docker
+  - role: arr_group
