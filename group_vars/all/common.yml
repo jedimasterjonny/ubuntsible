@@ -7,5 +7,6 @@ arr_group:
 
 arr_users:
   jackett: {uid: 710, gid: 710}
+  heimdall: {uid: 711, gid: 711}
 
 container_config_folder: /var/lib/containers

@@ -1,0 +1,37 @@
+---
+- name: Create heimdall group
+  ansible.builtin.group:
+    name: heimdall
+    gid: "{{ arr_users['heimdall'].gid }}"
+
+- name: Create heimdall user
+  ansible.builtin.user:
+    name: heimdall
+    uid: "{{ arr_users['heimdall'].uid }}"
+    groups: heimdall,{{ arr_group.name }}
+
+- name: Start Heimdall container
+  community.docker.docker_container:
+    name: heimdall
+    image: ghcr.io/linuxserver/heimdall:version-2.2.2
+    state: started
+    restart_policy: unless-stopped
+    networks:
+      - name: "{{ traefik_network_name }}"
+    volumes:
+      - "{{ container_config_folder }}/heimdall:/config"
+    labels:
+      traefik.http.routers.heimdall.rule: Host(`{{ inventory_hostname }}`)
+    env:
+      PUID: "{{ arr_users['heimdall'].uid }}"
+      PGID: "{{ arr_users['heimdall'].gid }}"
+      TZ: "Europe/London"
+    container_default_behavior: no_defaults
+    network_mode: "{{ traefik_network_name }}"
+    auto_remove: false
+    init: false
+    interactive: false
+    memory: "0"
+    paused: false
+    privileged: false
+    tty: false
