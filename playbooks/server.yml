@@ -11,3 +11,4 @@
     - {role: heimdall, tags: ['arr']}
     - {role: lidarr, tags: ['arr']}
     - {role: plex, tags: ['arr']}
+    - {role: radarr, tags: ['arr']}
