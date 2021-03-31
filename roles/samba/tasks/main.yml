@@ -1,0 +1,20 @@
+---
+
+- name: Install samba
+  ansible.builtin.apt:
+    name: samba
+    state: present
+
+- name: Create samba shares config
+  ansible.builtin.template:
+    src: shares.conf.j2
+    dest: /etc/samba/shares.conf
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Load shares into Samba config
+  ansible.builtin.lineinfile:
+    path: /etc/samba/smb.conf
+    state: present
+    line: "include = /etc/samba/shares.conf"

@@ -1,0 +1,11 @@
+[cintra]
+  comment = Ciri media vault
+  path = {{ vault_path }}
+  valid users = @{{ arr_group.name }}
+  force group = +{{ arr_group.name }}
+  public = no
+  writable = yes
+  create mask = 0664
+  directory mask = 2775
+  force create mode = 0664
+  force directory mode = 2775

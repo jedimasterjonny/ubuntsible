@@ -17,8 +17,9 @@ arr_users:
   transmission: {uid: 718, gid: 718}
 
 container_config_folder: /var/lib/containers
-media_path: /cintra/media
-downloads_path: /cintra/downloads
+vault_path: /cintra
+media_path: "{{ vault_path }}/media"
+downloads_path: "{{ vault_path }}/downloads"
 
 vpn_username: "{{ vault_vpn_username }}"
 vpn_password: "{{ vault_vpn_password }}"
