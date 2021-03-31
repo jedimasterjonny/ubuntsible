@@ -12,3 +12,4 @@
     - {role: lidarr, tags: ['arr']}
     - {role: plex, tags: ['arr']}
     - {role: radarr, tags: ['arr']}
+    - {role: sonarr, tags: ['arr']}
