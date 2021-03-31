@@ -21,7 +21,10 @@
       "automerge": true
     },
     {
-      "matchPackageNames": ["ghcr.io/linuxserver/jackett"],
+      "matchPackageNames": [
+        "ghcr.io/linuxserver/jackett",
+        "ghcr.io/linuxserver/tautulli"
+      ],
       "versionScheme": "regex:version-v(?<major>\\d+).(?<minor>\\d+).(?<patch>\\d+)?$"
     },
     {

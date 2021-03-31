@@ -1,0 +1,39 @@
+---
+- name: Create tautulli group
+  ansible.builtin.group:
+    name: tautulli
+    gid: "{{ arr_users['tautulli'].gid }}"
+
+- name: Create tautulli user
+  ansible.builtin.user:
+    name: tautulli
+    uid: "{{ arr_users['tautulli'].uid }}"
+    groups: tautulli,{{ arr_group.name }}
+
+- name: Start Tautulli container
+  community.docker.docker_container:
+    name: tautulli
+    image: ghcr.io/linuxserver/tautulli:version-v2.6.9
+    state: started
+    restart_policy: unless-stopped
+    networks:
+      - name: "{{ traefik_network_name }}"
+    volumes:
+      - "{{ container_config_folder }}/tautulli:/config"
+      - "{{ container_config_folder }}/plex/Library/Application Support/Plex Media Server/Logs:/logs:ro"
+    labels:
+      traefik.http.routers.tautulli.rule: Host(`tautulli.{{ inventory_hostname }}`)
+    env:
+      PUID: "{{ arr_users['tautulli'].uid }}"
+      PGID: "{{ arr_users['tautulli'].gid }}"
+      TZ: "Europe/London"
+      UMASK: "022"
+    container_default_behavior: no_defaults
+    network_mode: "{{ traefik_network_name }}"
+    auto_remove: false
+    init: false
+    interactive: false
+    memory: "0"
+    paused: false
+    privileged: false
+    tty: false
