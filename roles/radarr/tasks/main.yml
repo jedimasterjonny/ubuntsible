@@ -1,0 +1,40 @@
+---
+- name: Create radarr group
+  ansible.builtin.group:
+    name: radarr
+    gid: "{{ arr_users['radarr'].gid }}"
+
+- name: Create radarr user
+  ansible.builtin.user:
+    name: radarr
+    uid: "{{ arr_users['radarr'].uid }}"
+    groups: radarr,{{ arr_group.name }}
+
+- name: Start Radarr container
+  community.docker.docker_container:
+    name: radarr
+    image: ghcr.io/linuxserver/radarr:version-3.0.2.4552
+    state: started
+    restart_policy: unless-stopped
+    networks:
+      - name: "{{ traefik_network_name }}"
+    volumes:
+      - "{{ container_config_folder }}/radarr:/config"
+      - "{{ media_path }}/movies:/storage/media/movies"
+      - "{{ downloads_path }}:/storage/downloads"
+    labels:
+      traefik.http.routers.radarr.rule: Host(`radarr.{{ inventory_hostname }}`)
+    env:
+      PUID: "{{ arr_users['radarr'].uid }}"
+      PGID: "{{ arr_users['radarr'].gid }}"
+      TZ: "Europe/London"
+      UMASK: "022"
+    container_default_behavior: no_defaults
+    network_mode: "{{ traefik_network_name }}"
+    auto_remove: false
+    init: false
+    interactive: false
+    memory: "0"
+    paused: false
+    privileged: false
+    tty: false
