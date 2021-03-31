@@ -7,7 +7,7 @@
 - name: Start traefik container
   community.docker.docker_container:
     name: traefik
-    image: traefik:2.4.7
+    image: traefik:v2.4.8
     command:
       - --api.insecure=true
       - --entrypoints.web.address=:80
