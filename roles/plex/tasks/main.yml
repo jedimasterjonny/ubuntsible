@@ -1,0 +1,47 @@
+---
+- name: Create plex network
+  community.docker.docker_network:
+    name: plex
+
+- name: Create plex group
+  ansible.builtin.group:
+    name: plex
+    gid: "{{ arr_users['plex'].gid }}"
+
+- name: Create plex user
+  ansible.builtin.user:
+    name: plex
+    uid: "{{ arr_users['plex'].uid }}"
+    groups: plex,{{ arr_group.name }}
+
+- name: Start Plex container
+  community.docker.docker_container:
+    name: plex
+    image: ghcr.io/linuxserver/plex:1.22.1.4228-724c56e62-ls36
+    state: started
+    restart_policy: unless-stopped
+    networks:
+      - name: plex
+    ports:
+      - 32400:32400
+      - 32410:32410/udp
+      - 32412-32414:32412-32414/udp
+    volumes:
+      - "{{ container_config_folder }}/plex:/config"
+      - "{{ media_path }}:/storage/media"
+    env:
+      PUID: "{{ arr_users['plex'].uid }}"
+      PGID: "{{ arr_users['plex'].gid }}"
+      TZ: "Europe/London"
+      ADVERTISE_IP: "http://{{ ansible_default_ipv4.address }}:32400/"
+      VERSION: docker
+      UNMASK: "022"
+    container_default_behavior: no_defaults
+    network_mode: plex
+    auto_remove: false
+    init: false
+    interactive: false
+    memory: "0"
+    paused: false
+    privileged: false
+    tty: false
