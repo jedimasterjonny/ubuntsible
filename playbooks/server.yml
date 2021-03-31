@@ -7,3 +7,4 @@
     - {role: docker}
     - {role: traefik}
     - {role: arr_group}
+    - {role: jackett, tags: ['arr']}
