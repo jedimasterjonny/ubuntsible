@@ -9,3 +9,4 @@
     - {role: arr_group}
     - {role: jackett, tags: ['arr']}
     - {role: heimdall, tags: ['arr']}
+    - {role: lidarr, tags: ['arr']}
