@@ -5,3 +5,4 @@
     - {role: common}
     - {role: zfs}
     - {role: docker}
+    - {role: traefik}
