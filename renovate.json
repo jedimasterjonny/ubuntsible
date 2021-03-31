@@ -5,6 +5,7 @@
 
   "timezone": "Europe/London",
   "separateMinorPatch": true,
+  "commitMessageExtra": "to {{#if isMajor}}{{{newMajor}}}{{else}}{{#if isSingleVersion}}{{{newVersion}}}{{else}}{{{newValue}}}{{/if}}{{/if}}",
 
   "packageRules": [
     {
