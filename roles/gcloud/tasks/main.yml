@@ -1,0 +1,19 @@
+---
+- name: Add gcloud apt key
+  apt_key:
+    url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
+    state: present
+    keyring: /usr/share/keyrings/cloud.google.gpg
+
+- name: Add gcloud repository
+  apt_repository:
+    repo: deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main
+    state: present
+    update_cache: true
+
+- name: Ensure gcloud and required components are installed
+  apt:
+    name:
+      - google-cloud-sdk
+      - kubectl
+    state: present
