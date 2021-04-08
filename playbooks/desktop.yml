@@ -1,0 +1,5 @@
+---
+- name: Basic setup for ciri
+  hosts: localhost
+  roles:
+    - {role: gcloud}
