@@ -13,7 +13,7 @@
 - name: Start Tautulli container
   community.docker.docker_container:
     name: tautulli
-    image: ghcr.io/linuxserver/tautulli:version-v2.6.10
+    image: ghcr.io/linuxserver/tautulli:version-v2.7.0
     state: started
     restart_policy: unless-stopped
     networks:
