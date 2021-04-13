@@ -26,7 +26,7 @@
       traefik.http.services.tranmission.loadbalancer.server.port: '9091'
     env:
       PUID: "{{ arr_users['transmission'].uid }}"
-      PGID: "{{ arr_users['transmission'].gid }}"
+      PGID: "{{ arr_group.gid }}"
       TZ: "Europe/London"
       UMASK: "022"
       LOCAL_NETWORK: "192.168.122.0/24"

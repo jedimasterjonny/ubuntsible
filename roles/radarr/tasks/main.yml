@@ -26,7 +26,7 @@
       traefik.http.routers.radarr.rule: Host(`radarr.{{ inventory_hostname }}`)
     env:
       PUID: "{{ arr_users['radarr'].uid }}"
-      PGID: "{{ arr_users['radarr'].gid }}"
+      PGID: "{{ arr_group.gid }}"
       TZ: "Europe/London"
       UMASK: "022"
     container_default_behavior: no_defaults

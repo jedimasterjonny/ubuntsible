@@ -26,7 +26,7 @@
       traefik.http.routers.sonarr.rule: Host(`sonarr.{{ inventory_hostname }}`)
     env:
       PUID: "{{ arr_users['sonarr'].uid }}"
-      PGID: "{{ arr_users['sonarr'].gid }}"
+      PGID: "{{ arr_group.gid }}"
       TZ: "Europe/London"
       UMASK: "022"
     container_default_behavior: no_defaults

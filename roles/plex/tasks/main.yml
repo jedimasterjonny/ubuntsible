@@ -31,7 +31,7 @@
       - "{{ media_path }}:/storage/media"
     env:
       PUID: "{{ arr_users['plex'].uid }}"
-      PGID: "{{ arr_users['plex'].gid }}"
+      PGID: "{{ arr_group.gid }}"
       TZ: "Europe/London"
       ADVERTISE_IP: "http://{{ ansible_default_ipv4.address }}:32400/"
       VERSION: docker
