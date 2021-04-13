@@ -7,6 +7,13 @@
   "separateMinorPatch": true,
   "commitMessageExtra": "to {{#if isMajor}}{{{newMajor}}}{{else}}{{#if isSingleVersion}}{{{newVersion}}}{{else}}{{{newValue}}}{{/if}}{{/if}}",
 
+  "regexManagers": [
+    {
+      "fileMatch": ["main.yml"],
+      "matchStrings": ["datasource=(?<datasource>.*?) depName=(?<depName>.*?) ?\\s.*?_version: \\\"(?<currentValue>.*)\\\""]
+    }
+  ],
+
   "packageRules": [
     {
       "matchUpdateTypes": ["major"],
