@@ -3,3 +3,4 @@
   hosts: localhost
   roles:
     - {role: gcloud}
+    - {role: k9s}
