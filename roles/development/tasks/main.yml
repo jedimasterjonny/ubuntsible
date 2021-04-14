@@ -2,27 +2,27 @@
 - name: Install general development packages
   ansible.builtin.apt:
     name:
-    - build-essential
-    - yamllint
-    - shellcheck
-    - cmake
-    - ninja-build
-    - git-lfs
+      - build-essential
+      - yamllint
+      - shellcheck
+      - cmake
+      - ninja-build
+      - git-lfs
     state: latest
 
 - name: Install Phoronix test suite prerequisites
   ansible.builtin.apt:
     name:
-    - php-cli
-    - php-xml
+      - php-cli
+      - php-xml
     state: latest
 
 - name: Install work development packages
   ansible.builtin.apt:
     name:
-    - libunittest++-dev
-    - libarchive-dev
-    - libssl-dev
-    - libsqlite3-dev
-    - bc
+      - libunittest++-dev
+      - libarchive-dev
+      - libssl-dev
+      - libsqlite3-dev
+      - bc
     state: latest
