@@ -6,3 +6,4 @@
     - {role: k9s}
     - {role: sshd}
     - {role: development}
+    - {role: openvino}
