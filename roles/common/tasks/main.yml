@@ -2,6 +2,7 @@
 - name: Set hostname
   ansible.builtin.hostname:
     name: "{{ inventory_hostname }}"
+  when: inventory_hostname != "localhost"
 
 - name: Create ansible user
   ansible.builtin.user:

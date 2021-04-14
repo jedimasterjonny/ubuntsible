@@ -2,6 +2,7 @@
 - name: Basic setup for ciri
   hosts: localhost
   roles:
+    - {role: common}
     - {role: gcloud}
     - {role: k9s}
     - {role: sshd}
