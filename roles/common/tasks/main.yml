@@ -17,3 +17,27 @@
     group: root
     mode: '0644'
     create: true
+
+- name: Install ZSH
+  ansible.builtin.apt:
+    name: zsh
+    state: present
+
+- name: Set shell to ZSH
+  ansible.builtin.user:
+    name: jonny
+    shell: /usr/bin/zsh
+
+- name: Get GRML ZSH
+  ansible.builtin.get_url:
+    url: https://git.grml.org/f/grml-etc-core/etc/zsh/zshrc
+    dest: /home/jonny/.zshrc
+    owner: jonny
+    group: jonny
+
+- name: Add local ZSH config
+  ansible.builtin.copy:
+    src: zshrc.local
+    dest: /home/jonny/.zshrc.local
+    owner: jonny
+    group: jonny
