@@ -1,0 +1,17 @@
+---
+- name: Add OpenVINO apt key
+  ansible.builtin.apt_key:
+    url: https://apt.repos.intel.com/openvino/2021/GPG-PUB-KEY-INTEL-OPENVINO-2021
+    state: present
+    keyring: /usr/share/keyrings/openvino.gpg
+
+- name: Add OpenVino repository
+  ansible.builtin.apt_repository:
+    repo: deb [signed-by=/usr/share/keyrings/openvino.gpg] https://apt.repos.intel.com/openvino/2021 all main
+    state: present
+    update_cache: true
+
+- name: Install OpenVINO
+  ansible.builtin.apt:
+    name: intel-openvino-dev-ubuntu20-2021.2.200
+    state: present
