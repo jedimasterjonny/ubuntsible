@@ -17,3 +17,4 @@
     - {role: portainer, tags: ['arr']}
     - {role: transmission, tags: ['arr']}
     - {role: samba}
+    - {role: sshd}
