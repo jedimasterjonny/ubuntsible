@@ -1,0 +1,11 @@
+---
+
+- name: Copy sshd config snippets
+  ansible.builtin.copy:
+    src: "{{ item }}"
+    dest: /etc/ssh/sshd_config.d/{{ item }}
+    owner: root
+    group: root
+  with_items:
+    - 00-allowed-users.conf
+  notify: restart ssh
