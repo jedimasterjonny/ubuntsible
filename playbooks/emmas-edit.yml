@@ -5,3 +5,4 @@
     - {role: common}
     - {role: sshd}
     - {role: docker, vars: {docker_external: true}}
+    - {role: wordpress}
