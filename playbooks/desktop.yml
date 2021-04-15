@@ -1,5 +1,5 @@
 ---
-- name: Basic setup for ciri
+- name: Configuration for desktop
   hosts: localhost
   roles:
     - {role: common}
