@@ -1,0 +1,6 @@
+---
+- name: Configuration for emmas-edit
+  hosts: staging.emmasedit.com
+  roles:
+    - {role: common}
+    - {role: sshd}
