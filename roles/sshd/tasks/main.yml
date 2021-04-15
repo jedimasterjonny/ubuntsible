@@ -8,4 +8,5 @@
     group: root
   with_items:
     - 00-allowed-users.conf
+    - 10-harden.conf
   notify: restart ssh
