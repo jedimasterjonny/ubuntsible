@@ -6,6 +6,11 @@
       - docker.io
       - python3-docker
     state: present
+  when: not docker_external
+
+- name: Install docker from repo
+  include_tasks: docker-external.yml
+  when: docker_external
 
 - name: Start docker
   ansible.builtin.service:
