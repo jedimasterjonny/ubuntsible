@@ -1,0 +1,159 @@
+---
+- name: Create wp directory
+  file:
+    path: "{{ wp_path }}"
+    state: directory
+    owner: "{{ wp_owner }}"
+    group: "{{ wp_owner }}"
+    mode: 0755
+
+- name: Create mysql directory
+  file:
+    path: "{{ mysql_path }}"
+    state: directory
+    owner: "{{ mysql_owner }}"
+    group: "root"
+    mode: 0755
+
+- name: Create nginx directory
+  file:
+    path: "{{ nginx_path }}"
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+
+- name: Create nginx ssl direcroy
+  file:
+    path: "{{ nginx_path }}/keystore"
+    state: directory
+    owner: root
+    group: root
+    mode: 0700
+
+- name: Push PHP config
+  copy:
+    src: upload.ini
+    dest: "{{ nginx_path }}/upload.ini"
+    owner: "root"
+    group: "root"
+    mode: 0644
+    backup: true
+
+- name: Push website certificate
+  copy:
+    src: cloudflare-origin.cert
+    dest: "{{ nginx_path }}/keystore/cloudflare-origin.cert"
+    owner: "{{ nginx_owner }}"
+    group: "{{ nginx_owner }}"
+    mode: 0644
+    backup: true
+
+- name: Push origin pull certificate
+  copy:
+    src: origin-pull-ca.pem
+    dest: "{{ nginx_path }}/keystore/origin-pull-ca.pem"
+    owner: "{{ nginx_owner }}"
+    group: "{{ nginx_owner }}"
+    mode: 0644
+    backup: true
+
+- name: Decrypt and push website private key
+  copy:
+    src: cloudflare-origin.key
+    dest: "{{ nginx_path }}/keystore/cloudflare-origin.key"
+    owner: "{{ nginx_owner }}"
+    group: "{{ nginx_owner }}"
+    mode: 0400
+    backup: true
+
+- name: Push nginx config
+  copy:
+    src: nginx.conf
+    dest: "{{ nginx_path }}/nginx.conf"
+    owner: "{{ nginx_owner }}"
+    group: "{{ nginx_owner }}"
+    mode: 0644
+    backup: true
+
+- name: Create docker networks
+  community.docker.docker_network:
+    name: "{{ item }}"
+  with_items:
+    - db
+    - web
+
+- name: Start MariaDB container
+  community.docker.docker_container:
+    name: mariadb
+    image: mariadb:10.5
+    state: started
+    restart_policy: unless-stopped
+    networks:
+      - name: db
+        aliases:
+          - db
+    volumes:
+      - /var/wordpress/mysql:/var/lib/mysql
+    env:
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: "{{ vault_sql_password }}"
+      MYSQL_RANDOM_ROOT_PASSWORD: '1'
+    container_default_behavior: no_defaults
+    network_mode: db
+    auto_remove: false
+    init: false
+    interactive: false
+    memory: "0"
+    paused: false
+    privileged: false
+    tty: false
+
+- name: Start wordpress container
+  community.docker.docker_container:
+    name: wordpress
+    image: wordpress:5.7.0-fpm-alpine
+    state: started
+    restart_policy: unless-stopped
+    networks:
+      - name: web
+        aliases:
+          - wordpress
+      - name: db
+    volumes:
+      - /var/wordpress/html:/var/www/html:rw
+      - /var/wordpress/nginx/upload.ini:/usr/local/etc/php/conf.d/upload.ini:ro
+    container_default_behavior: no_defaults
+    network_mode: web
+    auto_remove: false
+    init: false
+    interactive: false
+    memory: "0"
+    paused: false
+    privileged: false
+    tty: false
+
+- name: Start nginx container
+  community.docker.docker_container:
+    name: nginx
+    image: nginx:1.19.10-alpine
+    state: started
+    restart_policy: unless-stopped
+    networks:
+      - name: web
+    published_ports:
+      - "443:443"
+    volumes:
+      - /var/wordpress/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - /var/wordpress/nginx/keystore:/etc/nginx/keystore:ro
+      - /var/wordpress/html:/var/www/html:ro
+    container_default_behavior: no_defaults
+    network_mode: web
+    auto_remove: false
+    init: false
+    interactive: false
+    memory: "0"
+    paused: false
+    privileged: false
+    tty: false

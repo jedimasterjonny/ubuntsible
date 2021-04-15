@@ -23,3 +23,5 @@ downloads_path: "{{ vault_path }}/downloads"
 
 vpn_username: "{{ vault_vpn_username }}"
 vpn_password: "{{ vault_vpn_password }}"
+
+sql_password: "{{ vault_sql_password }}"

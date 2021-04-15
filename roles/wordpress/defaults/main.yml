@@ -1,0 +1,9 @@
+---
+wp_path: /var/wordpress/html
+wp_owner: "82"
+
+nginx_path: /var/wordpress/nginx
+nginx_owner: root
+
+mysql_path: /var/wordpress/mysql
+mysql_owner: "999"
