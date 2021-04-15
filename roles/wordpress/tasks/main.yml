@@ -113,7 +113,7 @@
 - name: Start wordpress container
   community.docker.docker_container:
     name: wordpress
-    image: wordpress:5.7.0-fpm-alpine
+    image: wordpress:5.7.1-fpm-alpine
     state: started
     restart_policy: unless-stopped
     networks:
