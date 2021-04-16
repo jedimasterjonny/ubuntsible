@@ -1,8 +1,8 @@
 ---
 - name: Configuration for emmas-edit
-  hosts: staging.emmasedit.com
+  hosts: ssh.emmasedit.com
   roles:
-    - {role: common}
+    - {role: common, vars: {inventory_hostname: emmasedit.com}}
     - {role: sshd}
     - {role: docker, vars: {docker_external: true}}
     - {role: wordpress}
