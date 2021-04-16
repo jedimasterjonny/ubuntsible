@@ -5,7 +5,7 @@ if [ "$EUID" -ne 0 ]
   exit
 fi
 
-useradd ansible -m
+useradd -u 1001 ansible -m
 echo "ansible ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/ansible-allow-to-sudo
 mkdir /home/ansible/.ssh
 cp /home/jonny/.ssh/authorized_keys /home/ansible/.ssh/authorized_keys

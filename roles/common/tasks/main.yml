@@ -24,9 +24,12 @@
     name: zsh
     state: present
 
-- name: Set shell to ZSH
+- name: Configure my user
   ansible.builtin.user:
     name: jonny
+    uid: 1000
+    groups: sudo
+    append: true
     shell: /usr/bin/zsh
 
 - name: Get GRML ZSH
