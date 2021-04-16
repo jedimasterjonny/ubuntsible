@@ -1,0 +1,8 @@
+---
+- name: Push unattended upgrades config
+  ansible.builtin.copy:
+    src: 95all-upgrades
+    dest: "/etc/apt/apt.conf.d/95all-upgrades"
+    owner: root
+    group: root
+    mode: 0644
