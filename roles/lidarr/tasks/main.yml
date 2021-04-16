@@ -14,6 +14,7 @@
   community.docker.docker_container:
     name: lidarr
     image: ghcr.io/linuxserver/lidarr:version-0.7.2.1878
+    pull: true
     state: started
     restart_policy: unless-stopped
     networks:

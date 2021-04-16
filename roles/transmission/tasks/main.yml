@@ -14,6 +14,7 @@
   community.docker.docker_container:
     name: transmission
     image: haugene/transmission-openvpn:3.6
+    pull: true
     state: started
     restart_policy: unless-stopped
     capabilities: NET_ADMIN

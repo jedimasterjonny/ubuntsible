@@ -18,6 +18,7 @@
   community.docker.docker_container:
     name: plex
     image: ghcr.io/linuxserver/plex:1.22.2.4282-a97b03fad-ls42
+    pull: true
     state: started
     restart_policy: unless-stopped
     networks:

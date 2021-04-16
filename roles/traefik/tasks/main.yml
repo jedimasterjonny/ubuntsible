@@ -8,6 +8,7 @@
   community.docker.docker_container:
     name: traefik
     image: traefik:v2.4.8
+    pull: true
     command:
       - --api.insecure=true
       - --entrypoints.web.address=:80

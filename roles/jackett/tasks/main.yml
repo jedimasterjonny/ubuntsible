@@ -14,6 +14,7 @@
   community.docker.docker_container:
     name: jackett
     image: ghcr.io/linuxserver/jackett:version-v0.17.886
+    pull: true
     state: started
     restart_policy: unless-stopped
     networks:
