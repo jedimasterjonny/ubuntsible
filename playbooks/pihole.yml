@@ -1,0 +1,8 @@
+---
+- name: Configuration for pi-hole
+  hosts: pi.hole
+  roles:
+    - {role: common}
+    - {role: sshd}
+    - {role: docker}
+    - {role: unattended_upgrades}
