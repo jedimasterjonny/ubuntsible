@@ -6,4 +6,4 @@
     - {role: sshd}
     - {role: docker, vars: {docker_external: true}}
     - {role: wordpress}
-    - {role: unattended-upgrades}
+    - {role: unattended_upgrades}
