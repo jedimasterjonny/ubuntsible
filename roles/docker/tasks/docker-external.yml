@@ -13,7 +13,5 @@
 
 - name: Install Docker
   package:
-    name:
-      - docker-ce
-      - python3-docker
+    name: docker-ce
     state: present

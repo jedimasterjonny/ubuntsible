@@ -2,15 +2,23 @@
 
 - name: Install docker
   ansible.builtin.apt:
-    name:
-      - docker.io
-      - python3-docker
+    name: docker.io
     state: present
   when: not docker_external
 
 - name: Install docker from repo
   include_tasks: docker-external.yml
   when: docker_external
+
+- name: Install Python 3 docker
+  package:
+    name: python-docker
+  when: ansible_python.version.major == 3
+
+- name: Install Python 2 docker
+  package:
+    name: python-docker
+  when: ansible_python.version.major == 2
 
 - name: Start docker
   ansible.builtin.service:
