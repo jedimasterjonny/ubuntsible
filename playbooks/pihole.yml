@@ -4,5 +4,7 @@
   roles:
     - {role: common}
     - {role: sshd}
-    - {role: docker}
+    - {role: docker, vars: {docker_external: true, docker_arch: armhf}}
     - {role: unattended_upgrades}
+    - {role: cloudflared}
+    - {role: pi_hole}
