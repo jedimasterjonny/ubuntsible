@@ -1,0 +1,19 @@
+---
+- name: Start Cloudflared
+  community.docker.docker_container:
+    name: cloudflared
+    image: ghcr.io/crazy-max/cloudflared:2021.4.0
+    pull: true
+    state: started
+    restart_policy: unless-stopped
+    network_mode: host
+    env:
+      TZ: "Europe/London"
+    container_default_behavior: no_defaults
+    auto_remove: false
+    init: false
+    interactive: false
+    memory: "0"
+    paused: false
+    privileged: false
+    tty: false
