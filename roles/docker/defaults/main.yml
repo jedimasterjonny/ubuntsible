@@ -1,3 +1,4 @@
 ---
 
 docker_external: false
+docker_arch: amd64
