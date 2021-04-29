@@ -25,3 +25,9 @@ vpn_username: "{{ vault_vpn_username }}"
 vpn_password: "{{ vault_vpn_password }}"
 
 sql_password: "{{ vault_sql_password }}"
+
+pihole_password: "{{ vault_pihole_password }}"
+
+pihole_static_ip: "192.168.68.121"
+ciri_static_ip: "192.168.68.112"
+emmas_edit_ip: "{{ vault_emmas_edit_ip }}"

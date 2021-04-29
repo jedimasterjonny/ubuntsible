@@ -1,0 +1,59 @@
+---
+- name: Create pihole directory
+  file:
+    path: "{{ container_config_folder }}/etc-pihole"
+    state: directory
+    owner: '999'
+    group: '999'
+    mode: '0775'
+
+- name: Create dnsmasq directories
+  file:
+    path: "{{ container_config_folder }}/etc-dnsmasq.d"
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: Copy media server resolution
+  ansible.builtin.template:
+    src: 10-media.conf.j2
+    dest: "{{ container_config_folder }}/etc-dnsmasq.d/10-media.conf"
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Copy custom DNS config
+  ansible.builtin.template:
+    src: custom.list.j2
+    dest: "{{ container_config_folder }}/etc-pihole/custom.list"
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Start pihole container
+  community.docker.docker_container:
+    name: pihole
+    image: pihole/pihole:v5.8.1
+    pull: true
+    state: started
+    restart_policy: unless-stopped
+    network_mode: host
+    dns_servers:
+      - "1.1.1.1"
+    volumes:
+      - "{{ container_config_folder }}/etc-pihole:/etc/pihole/"
+      - "{{ container_config_folder }}/etc-dnsmasq.d:/etc/dnsmasq.d/"
+    env:
+      TZ: "Europe/London"
+      WEBPASSWORD: "{{ pihole_password }}"
+      PIHOLE_DNS_: '127.0.0.1#5053'
+      ServerIP: "{{ pihole_static_ip }}"
+    container_default_behavior: no_defaults
+    auto_remove: false
+    init: false
+    interactive: false
+    memory: "0"
+    paused: false
+    privileged: false
+    tty: false
