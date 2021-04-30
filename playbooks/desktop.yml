@@ -4,7 +4,6 @@
   roles:
     - {role: common}
     - {role: gcloud}
-    - {role: k9s}
     - {role: sshd}
     - {role: development}
     - {role: openvino}

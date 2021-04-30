@@ -1,3 +1,0 @@
----
-# renovate: datasource=github-tags depName=derailed/k9s
-k9s_version: "v0.24.8"
