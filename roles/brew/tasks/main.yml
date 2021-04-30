@@ -1,0 +1,32 @@
+---
+
+- name: Check for brew installation
+  ansible.builtin.stat:
+    path: /home/linuxbrew/.linuxbrew/bin/brew
+  register: brew_installation
+
+- name: Install homebrew
+  block:
+    - name: Download install script
+      ansible.builtin.get_url:
+        url: https://raw.githubusercontent.com/Homebrew/install/master/install.sh
+        dest: /tmp/install-brew.sh
+        mode: a+x
+
+    - name: Install brew
+      shell: install-brew.sh
+      args:
+        chdir: /tmp
+  when: not brew_installation.stat.exists
+
+- name: Install brew packages
+  command: /home/linuxbrew/.linuxbrew/bin/brew install {{ item }}
+  args:
+    creates: /home/linuxbrew/.linuxbrew/bin/{{ item }}
+  become: true
+  become_user: jonny
+  with_items:
+    - tfenv
+    - helm
+    - istioctl
+    - k9s

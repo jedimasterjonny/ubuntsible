@@ -7,3 +7,4 @@
     - {role: sshd}
     - {role: development}
     - {role: openvino}
+    - {role: brew}
