@@ -1,5 +1,10 @@
 ---
 
+- name: Check for sshd config snippet support
+  ansible.builtin.stat:
+    path: /etc/ssh/sshd_config.d
+  register: ssh_dir
+
 - name: Copy sshd config snippets
   ansible.builtin.copy:
     src: "{{ item }}"
@@ -9,6 +14,7 @@
   with_items:
     - 00-allowed-users.conf
     - 10-harden.conf
+  when: ssh_dir.stat.exists
   notify: restart ssh
 
 - name: Push authorized keys
