@@ -12,7 +12,7 @@
 
 - name: Install Python 3 docker
   package:
-    name: python-docker
+    name: python3-docker
   when: ansible_python.version.major == 3
 
 - name: Install Python 2 docker
