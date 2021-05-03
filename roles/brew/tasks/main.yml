@@ -14,7 +14,7 @@
         mode: a+x
 
     - name: Install brew
-      shell: install-brew.sh
+      command: install-brew.sh
       args:
         chdir: /tmp
   when: not brew_installation.stat.exists
