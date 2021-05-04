@@ -17,7 +17,7 @@
 - name: Start Plex container
   community.docker.docker_container:
     name: plex
-    image: ghcr.io/linuxserver/plex:1.22.3.4392-d7c624def-ls44
+    image: ghcr.io/linuxserver/plex:1.22.3.4392-d7c624def-ls45
     pull: true
     state: started
     restart_policy: unless-stopped
