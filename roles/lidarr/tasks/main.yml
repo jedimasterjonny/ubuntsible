@@ -13,7 +13,7 @@
 - name: Start Lidarr container
   community.docker.docker_container:
     name: lidarr
-    image: ghcr.io/linuxserver/lidarr:version-0.7.2.1878
+    image: ghcr.io/linuxserver/lidarr:0.7.2.1878-ls46
     pull: true
     state: started
     restart_policy: unless-stopped
