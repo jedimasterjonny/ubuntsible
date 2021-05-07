@@ -18,4 +18,4 @@
     - {role: transmission, tags: ['arr']}
     - {role: samba}
     - {role: sshd}
-    - {role: unattended-upgrades}
+    - {role: unattended_upgrades}
