@@ -86,7 +86,7 @@
 - name: Start MariaDB container
   community.docker.docker_container:
     name: mariadb
-    image: mariadb:10.5
+    image: mariadb:10.6
     pull: true
     state: started
     restart_policy: unless-stopped
