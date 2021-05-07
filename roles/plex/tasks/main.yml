@@ -21,6 +21,7 @@
     pull: true
     state: started
     restart_policy: unless-stopped
+    hostname: ciri
     networks:
       - name: plex
     ports:
