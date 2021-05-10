@@ -13,7 +13,7 @@
 - name: Start Radarr container
   community.docker.docker_container:
     name: radarr
-    image: ghcr.io/linuxserver/radarr:version-3.1.1.4954
+    image: ghcr.io/linuxserver/radarr:latest@sha256:a4d9e43ecdacb92165c27f38d12e95781a1f1e4bdfbbf72b473a069a659e0814
     pull: true
     state: started
     restart_policy: unless-stopped

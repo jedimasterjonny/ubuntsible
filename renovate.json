@@ -44,9 +44,10 @@
     {
       "matchPackageNames": [
         "ghcr.io/linuxserver/radarr",
-        "ghcr.io/linuxserver/sonarr"
+        "ghcr.io/linuxserver/sonarr",
+        "ghcr.io/linuxserver/lidarr"
       ],
-      "versionScheme": "regex:^version-3.(?<major>\\d+).(?<minor>\\d+).(?<patch>\\d+)?$"
+      "automerge": true
     },
     {
       "matchPackageNames": ["ghcr.io/linuxserver/heimdall"],
@@ -57,10 +58,6 @@
         "ghcr.io/linuxserver/plex"
       ],
       "versioning": "loose"
-    },
-    {
-      "matchPackageNames": ["ghcr.io/linuxserver/lidarr"],
-      "versionScheme": "regex:^version-0.(?<major>\\d+).(?<minor>\\d+).(?<patch>\\d+)?$"
     }
   ]
 }
