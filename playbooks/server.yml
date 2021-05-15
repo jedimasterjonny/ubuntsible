@@ -1,6 +1,6 @@
 ---
 - name: Basic setup for ciri
-  hosts: ubuntsible-test-server.home
+  hosts: ciri.home
   roles:
     - {role: common}
     - {role: zfs}
