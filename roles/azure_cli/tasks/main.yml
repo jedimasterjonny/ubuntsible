@@ -1,0 +1,17 @@
+---
+- name: Add azure apt key
+  ansible.builtin.apt_key:
+    url: https://packages.microsoft.com/keys/microsoft.asc
+    state: present
+    keyring: /usr/share/keyrings/microsoft.gpg
+
+- name: Add azure repository
+  ansible.builtin.apt_repository:
+    repo: deb [arch=amd64, signed-by=/usr/share/keyrings/microsoft.gpg] https://packages.microsoft.com/repos/azure-cli/ focal main
+    state: present
+    update_cache: true
+
+- name: Ensure azure CLI is installed
+  ansible.builtin.apt:
+    name: azure-cli
+    state: present

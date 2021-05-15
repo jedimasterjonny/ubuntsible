@@ -4,6 +4,7 @@
   roles:
     - {role: common}
     - {role: gcloud}
+    - {role: azure_cli}
     - {role: sshd}
     - {role: development}
     - {role: openvino}
