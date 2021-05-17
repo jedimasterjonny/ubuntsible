@@ -2,7 +2,7 @@
 - name: Start Cloudflared
   community.docker.docker_container:
     name: cloudflared
-    image: ghcr.io/crazy-max/cloudflared:2021.4.0
+    image: ghcr.io/crazy-max/cloudflared:2021.5.7
     pull: true
     state: started
     restart_policy: unless-stopped
