@@ -1,0 +1,5 @@
+---
+- import_playbook: update.yml
+- import_playbook: server.yml
+- import_playbook: pihole.yml
+- import_playbook: emmas-edit.yml
