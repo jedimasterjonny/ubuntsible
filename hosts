@@ -1,4 +1,7 @@
-ciri.home
+[desktops]
 localhost
+
+[servers]
+ciri.home
 ssh.emmasedit.com
 pi.hole
