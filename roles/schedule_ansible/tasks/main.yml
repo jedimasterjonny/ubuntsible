@@ -1,0 +1,31 @@
+---
+- name: Install Ansible
+  ansible.builtin.apt:
+    name: ansible
+    state: present
+
+- name: Install convenience script
+  copy:
+    src: regular-ansible.sh
+    dest: /usr/local/bin/regular-ansible.sh
+    owner: root
+    group: root
+    mode: 0755
+
+- name: Install systemd timer and service
+  copy:
+    src: "{{ item }}"
+    dest: /etc/systemd/system/{{ item }}
+    owner: root
+    group: root
+    mode: 0644
+  with_items:
+    - regular-ansible.timer
+    - regular-ansible.service
+
+- name: Activate systemd timer
+  systemd:
+    name: regular-ansible.timer
+    enabled: yes
+    state: started
+    daemon-reload: yes
