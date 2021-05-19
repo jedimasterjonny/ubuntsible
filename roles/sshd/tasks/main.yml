@@ -20,4 +20,15 @@
 - name: Push authorized keys
   ansible.posix.authorized_key:
     user: jonny
-    key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGOARhByqvHhJYkOvn+1IlEnKsnn3aqNNFXervuw/Qq+ jonny@pattern-2021-03-10"
+    key: "{{ item }}"
+  with_items:
+    - "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGOARhByqvHhJYkOvn+1IlEnKsnn3aqNNFXervuw/Qq+ jonny@pattern-2021-03-10"
+    - "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBg5CqPYJjy7SVnvEunrCZv7GrJ/lMih70d4onyTkdMP jonny@ciri-2019-02-12"
+
+- name: Push ansible authorized keys
+  ansible.posix.authorized_key:
+    user: ansible
+    key: "{{ item }}"
+  with_items:
+    - "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGOARhByqvHhJYkOvn+1IlEnKsnn3aqNNFXervuw/Qq+ jonny@pattern-2021-03-10"
+    - "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBg5CqPYJjy7SVnvEunrCZv7GrJ/lMih70d4onyTkdMP jonny@ciri-2019-02-12"
