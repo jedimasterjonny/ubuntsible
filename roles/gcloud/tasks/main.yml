@@ -15,5 +15,6 @@
   ansible.builtin.apt:
     name:
       - google-cloud-sdk
+      - google-cloud-sdk-kpt
       - kubectl
     state: present

@@ -26,3 +26,15 @@
       - libsqlite3-dev
       - bc
     state: latest
+
+- name: Install Python development packages
+  ansible.builtin.apt:
+    name:
+      - python3
+      - python3-grpc-tools
+      - python3-venv
+      - python3-pip
+      - pylint
+      - bandit
+      - black
+    state: latest
