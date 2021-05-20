@@ -1,0 +1,7 @@
+---
+- name: Install Ansible
+  ansible.builtin.apt:
+    name:
+      - ansible
+      - ansible-lint
+    state: present
