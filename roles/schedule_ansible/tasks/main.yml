@@ -26,6 +26,6 @@
 - name: Activate systemd timer
   systemd:
     name: regular-ansible.timer
-    enabled: yes
+    enabled: true
     state: started
-    daemon-reload: yes
+    daemon-reload: true
