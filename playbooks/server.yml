@@ -19,4 +19,5 @@
     - {role: samba}
     - {role: sshd}
     - {role: unattended_upgrades}
+    - {role: ansible}
     - {role: schedule_ansible}

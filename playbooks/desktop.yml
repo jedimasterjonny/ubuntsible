@@ -9,3 +9,4 @@
     - {role: development}
     - {role: openvino}
     - {role: brew}
+    - {role: ansible}
