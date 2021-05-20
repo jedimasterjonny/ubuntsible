@@ -6,6 +6,6 @@ cd /tmp
 git clone git@github.com:jedimasterjonny/ubuntsible.git
 pushd ubuntsible
 cp /home/jonny/vault-password .vault-password
-ansible-playbook --vault-password-file=/home/jonny/vault-password playbooks/regular-run.yml
+ansible-playbook --vault-password-file=/home/jonny/vault-password playbooks/regular-run.yml || true
 popd
 rm -rf ubuntsible

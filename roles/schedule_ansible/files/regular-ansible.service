@@ -3,6 +3,7 @@ Description=Scheduled Ansible
 
 [Service]
 Type=oneshot
+User=jonny
 Restart=on-failure
 RestartSec=5m
 ExecStart=/usr/local/bin/regular-ansible.sh
