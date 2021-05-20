@@ -24,6 +24,12 @@
     name: zsh
     state: present
 
+- name: Install common tools
+  ansible.builtin.apt:
+    name:
+      - unzip
+    state: present
+
 - name: Configure my user
   ansible.builtin.user:
     name: jonny
