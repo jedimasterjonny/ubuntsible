@@ -13,7 +13,7 @@
 - name: Start Jackett container
   community.docker.docker_container:
     name: jackett
-    image: ghcr.io/linuxserver/jackett:version-v0.18.205
+    image: ghcr.io/linuxserver/jackett:version-v0.18.210
     pull: true
     state: started
     restart_policy: unless-stopped
