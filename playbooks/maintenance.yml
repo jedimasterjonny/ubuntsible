@@ -3,3 +3,4 @@
   hosts: servers
   roles:
     - {role: update}
+    - {role: docker_clean}
