@@ -1,5 +1,5 @@
 ---
-- name: Update all
+- name: Regular maintainence
   hosts: servers
   roles:
     - {role: update}
