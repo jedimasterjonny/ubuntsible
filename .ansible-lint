@@ -1,4 +1,4 @@
 skip_list:
-  - '701'
-  - '403'
+  - '701' # No 'galaxy_info' found"
+  - '403' # Package installs should not use latest
   - '301' # Commands should not change things if nothing needs doing
