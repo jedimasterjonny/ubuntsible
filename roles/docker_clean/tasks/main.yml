@@ -1,0 +1,4 @@
+---
+# Ansible Docker prune module seems to simply not work?
+- name: Prune all Docker cruft
+  command: docker system prune -af
