@@ -15,6 +15,7 @@
     name: radarr
     image: ghcr.io/linuxserver/radarr:latest@sha256:3232d84b8195c220bb20f63ac786714f743d2625e52a949cb5d01f02d88b12bd
     pull: true
+    recreate: true
     state: started
     restart_policy: unless-stopped
     networks:

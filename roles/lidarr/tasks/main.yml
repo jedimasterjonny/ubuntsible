@@ -15,6 +15,7 @@
     name: lidarr
     image: ghcr.io/linuxserver/lidarr:latest@sha256:510b8dbf2f125591c1e8ba31538555c3bd01d5905f0eca8a971db42a75abd5b3
     pull: true
+    recreate: true
     state: started
     restart_policy: unless-stopped
     networks:

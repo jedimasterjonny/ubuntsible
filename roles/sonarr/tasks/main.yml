@@ -15,6 +15,7 @@
     name: sonarr
     image: ghcr.io/linuxserver/sonarr:latest@sha256:93c7e5cd727cd5316b0b7b17a17a0c878a1c6aacfae9fa3c3742be2ecbf2dce2
     pull: true
+    recreate: true
     state: started
     restart_policy: unless-stopped
     networks:
