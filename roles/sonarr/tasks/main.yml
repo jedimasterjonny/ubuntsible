@@ -13,7 +13,7 @@
 - name: Start Sonarr container
   community.docker.docker_container:
     name: sonarr
-    image: ghcr.io/linuxserver/sonarr:latest@sha256:c9b7668f6f08c80317ccb264b88877f048f3d63759e476361ca498e6a9c8a27d
+    image: ghcr.io/linuxserver/sonarr:latest@sha256:d84191900a7ee96632d2387598f3edd304785f788e1e2f50e06b1dbe8c6337f7
     pull: true
     recreate: true
     state: started
