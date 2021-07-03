@@ -13,7 +13,7 @@
 - name: Start Lidarr container
   community.docker.docker_container:
     name: lidarr
-    image: ghcr.io/linuxserver/lidarr:latest@sha256:43a9d3036dcf0d020b1fcc013a8bbbcbc70028dedb3aaa87a3660674509c3c3c
+    image: ghcr.io/linuxserver/lidarr:latest@sha256:82015420008033d75027c1851d6ceb9a027436d67a6ebd10769db0d77ff2cafa
     pull: true
     recreate: true
     state: started
