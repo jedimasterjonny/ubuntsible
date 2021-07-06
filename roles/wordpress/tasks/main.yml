@@ -139,7 +139,7 @@
 - name: Start nginx container
   community.docker.docker_container:
     name: nginx
-    image: nginx:1.21.0-alpine
+    image: nginx:1.21.1-alpine
     pull: true
     state: started
     restart_policy: unless-stopped
