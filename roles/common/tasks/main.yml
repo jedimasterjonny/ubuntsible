@@ -40,7 +40,7 @@
 
 - name: Get GRML ZSH
   ansible.builtin.get_url:
-    url: https://git.grml.org/f/grml-etc-core/etc/zsh/zshrc
+    url: https://raw.githubusercontent.com/grml/grml-etc-core/master/etc/zsh/zshrc
     dest: /home/jonny/.zshrc
     owner: jonny
     group: jonny
