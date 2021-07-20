@@ -114,7 +114,7 @@
 - name: Start wordpress container
   community.docker.docker_container:
     name: wordpress
-    image: wordpress:5.7.2-fpm-alpine
+    image: wordpress:5.8.0-fpm-alpine
     pull: true
     state: started
     restart_policy: unless-stopped
